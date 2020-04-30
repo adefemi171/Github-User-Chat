@@ -66,8 +66,8 @@ func main() {
 	// Setting up gomniauth
 	gomniauth.SetSecurityKey(signature.RandomKey(64))
 	gomniauth.WithProviders(
-		github.New("key", "secret", "http://localhost:7000/auth/callback/github"),
-		google.New("key", "secret", "http://localhost:7000/auth/callback/google"),
+		github.New("12e9f8e2dc131f2f19ae", "48ec096a33e5cccb14bbccc605c68837183cff38", "http://localhost:7000/auth/callback/github"),
+		google.New("312929473322-k77gg52v8ibpr7jan148gallnuslorjj.apps.googleusercontent.com", "nO3Y7zIMdgMzAdboAEx5dOD2", "http://localhost:7000/auth/callback/google"),
 		// outlook.New("key", "secret", "http://localhost:7000/authy/callback/outlook"),
 	)
 	r := newRoom()
@@ -83,6 +83,20 @@ func main() {
 	http.Handle("/login", &templateHandler{filename: "login.html"})
 	http.HandleFunc("/auth/", loginHandler)
 	http.Handle("/room", r)
+	// A log out function that clears cookies and redirect to the login page
+	http.HandleFunc("/logout", func(w http.ResponseWriter, r *http.Request){
+		// update cookie setting MaxAge to -1 (delete cookie immediately by the browser)
+		// if the browser doesn't support cookie deletion the value set to empty strin
+		// will remove user data that was stored
+		http.SetCookie(w, &http.Cookie{
+			Name:	"auth",
+			Value:	"",
+			Path:	"/",
+			MaxAge:	-1,
+		})
+		w.Header().Set("Location", "/chat")
+		w.WriteHeader(http.StatusTemporaryRedirect)
+	})
 	//get the room going
 	go r.run()
 	log.Println("Starting web server on ", *host)

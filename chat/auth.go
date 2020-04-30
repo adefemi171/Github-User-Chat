@@ -20,14 +20,13 @@ type authyHandler struct {
 // and it will use the Header and WriteHeader method on http.ResponseWriter
 // to redirect the user to a login page only if the cookie is not missing
 func (h *authyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	_, err := r.Cookie("auth")
-	if err == http.ErrNoCookie {
+	// _, err := r.Cookie("auth")
+	if cookie, err := r.Cookie("auth"); err == http.ErrNoCookie || cookie.Value == "" {
 		// user not authenticated
 		w.Header().Set("Location", "/login")
 		w.WriteHeader(http.StatusTemporaryRedirect)
-		return
-	}
-	if err != nil {
+		// return
+	} else if err != nil {
 		// some other error
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -91,9 +90,11 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, fmt.Sprintf("Error trying to get user %s: %s", provider, err), http.StatusInternalServerError)
 			return
 		}
-		// using authCookieValue to save some data
+		// using authCookieValue to save some data like username and
+		// use the avatar from the OAuth
 		authCookieValue := objx.New(map[string]interface{}{
 			"name": user.Name(),
+			"avatar_url": user.AvatarURL(),
 		}).MustBase64()
 		http.SetCookie(w, &http.Cookie{
 			Name:  "auth",
