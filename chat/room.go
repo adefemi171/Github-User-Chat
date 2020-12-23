@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/adefemi171/githubChat/trace"
+	"github.com/adefemi171/Github-User-Chat/trace"
 	"github.com/stretchr/objx"
 
 	"github.com/gorilla/websocket"
