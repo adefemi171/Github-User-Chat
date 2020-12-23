@@ -1,0 +1,44 @@
+# github.com/clbanning/x2j v0.0.0-20191024224557-825249438eec
+## explicit
+github.com/clbanning/x2j
+# github.com/gorilla/websocket v1.4.2
+## explicit
+github.com/gorilla/websocket
+# github.com/stretchr/codecs v0.0.0-20170403063245-04a5b1e1910d
+## explicit
+github.com/stretchr/codecs
+github.com/stretchr/codecs/bson
+github.com/stretchr/codecs/constants
+github.com/stretchr/codecs/csv
+github.com/stretchr/codecs/json
+github.com/stretchr/codecs/jsonp
+github.com/stretchr/codecs/msgpack
+github.com/stretchr/codecs/services
+github.com/stretchr/codecs/xml
+# github.com/stretchr/gomniauth v0.0.0-20170717123514-4b6c822be2eb
+## explicit
+github.com/stretchr/gomniauth
+github.com/stretchr/gomniauth/common
+github.com/stretchr/gomniauth/oauth2
+github.com/stretchr/gomniauth/providers/github
+github.com/stretchr/gomniauth/providers/google
+# github.com/stretchr/objx v0.3.0
+## explicit
+github.com/stretchr/objx
+# github.com/stretchr/signature v0.0.0-20160104132143-168b2a1e1b56
+## explicit
+github.com/stretchr/signature
+# github.com/stretchr/stew v0.0.0-20130812190256-80ef0842b48b
+## explicit
+github.com/stretchr/stew/strings
+# github.com/stretchr/tracer v0.0.0-20140124184152-66d3696bba97
+## explicit
+github.com/stretchr/tracer
+# github.com/ugorji/go v1.2.2
+## explicit
+# github.com/ugorji/go/codec v1.2.2
+github.com/ugorji/go/codec
+# gopkg.in/mgo.v2 v2.0.0-20190816093944-a6b53ec6cb22
+## explicit
+gopkg.in/mgo.v2/bson
+gopkg.in/mgo.v2/internal/json
